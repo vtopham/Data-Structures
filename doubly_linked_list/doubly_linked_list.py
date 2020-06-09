@@ -49,13 +49,15 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
         new_node = ListNode(value, None, self.head)
-        if self.length > 0:
+        if self.length == 0:
+            #if there's nothing then when you add the node it will be the tail
+            self.tail = new_node
+        else:
+            # if there's at least one element then there _was_ a head and we'll update it's prev
             self.head.prev = new_node
         self.head = new_node
         self.length += 1
-        #if the list had 0 nodes before then this head is also the tail
-        if self.length == 1:
-            self.tail = new_node
+        
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -63,12 +65,13 @@ class DoublyLinkedList:
     def remove_from_head(self):
         if self.length > 0:
             removed_node = self.head
-            #if there's more than one node, we can move onto the next one
             self.head = self.head.next
             self.length -= 1
             if self.length > 0:
+                #if we have at least one node left, we'll make update head.prev
                 self.head.prev = None
             else:
+                #but if there's 0 nodes then the tail is None 
                 self.tail = None
             
             return removed_node.value
@@ -81,8 +84,8 @@ class DoublyLinkedList:
         new_node = ListNode(value, self.tail, None)
         if self.length > 0:
             self.tail.next = new_node
-        #if there were previously no other nodes then the head would also be the tail
         else:
+            #if there were previously no other nodes then the head would also be the tail
             self.head = new_node
         
         self.tail = new_node
@@ -115,12 +118,14 @@ class DoublyLinkedList:
         elif node.next == None:
             # if it's the tail then set it's prev as the new tail
             node.prev.next = None
+            self.tail = node.prev
         else:
             #make the previous node refer to the next node
             node.prev.next = node.next
             node.next.prev = node.prev
 
         #then add the node as a new head
+        self.head.prev = node
         node.prev = None
         node.next = self.head
         self.head = node
@@ -128,22 +133,22 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        #if the length is 1 or less then nothing changes
-        if self.length <= 1:
+        
+        #if it's already the tail don't do anything
+        if node.next == None:
             pass
+        #if it's the head then make the second node the new head
+        elif node.prev == None:
+            node.next.prev == None
+            self.head = node.next
+        #if it's in the middle then have the nodes skip over it
         else:
-            #if it's already the tail don't do anything
-            if node.next == None:
-                pass
-            #if it's the head then make the second node the new head
-            elif node.prev == None:
-                node.next.prev == None
-            #if it's in the middle then have the nodes skip over it
-            else:
-                node.prev.next = node.next
-                node.next.prev = node.prev
-                
-            #now actually link it as the tail
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            
+        #now actually link it as the tail
+        
+        self.tail.next = node
         node.prev = self.tail
         node.next = None
         self.tail = node
@@ -169,7 +174,7 @@ class DoublyLinkedList:
         else:
         #otherwise
             node.prev.next = node.next
-            node.next.pre = node.prev
+            node.next.prev = node.prev
         self.length -= 1
 
 
