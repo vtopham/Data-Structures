@@ -17,25 +17,41 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        new_node = BSTNode(value)
-        
-        def find_and_insert(eval_node, new_node):
-            if value < eval_node.value:
-                #Try to put it on the left
-                if eval_node.left == None:
-                    eval_node.left = new_node
-                else:
-                #If there's already a node there, start over evaluating that node
-                    find_and_insert(eval_node.left, new_node)
+        if value < self.value:
+            #Try to put it on the left
+            if self.left == None:
+                self.left = BSTNode(value)
             else:
-                #Try to put it on the right
-                if eval_node.right == None:
-                    eval_node.right = new_node
-                else:
-                #If there's already a node there, start over evaluating that node
-                    find_and_insert(eval_node.right, new_node)
+            #If there's already a node there, start over evaluating that node
+                self.left.insert(value)
+        else:
+            #Try to put it on the right
+            if self.right == None:
+                self.right = BSTNode(value)
+            else:
+            #If there's already a node there, start over evaluating that node
+                self.right.insert(value)
 
-        find_and_insert(self, new_node) #start with the root
+      
+
+
+        # def find_and_insert(eval_node, new_node):
+        #     if value < eval_node.value:
+        #         #Try to put it on the left
+        #         if eval_node.left == None:
+        #             eval_node.left = new_node
+        #         else:
+        #         #If there's already a node there, start over evaluating that node
+        #             find_and_insert(eval_node.left, new_node)
+        #     else:
+        #         #Try to put it on the right
+        #         if eval_node.right == None:
+        #             eval_node.right = new_node
+        #         else:
+        #         #If there's already a node there, start over evaluating that node
+        #             find_and_insert(eval_node.right, new_node)
+
+        # find_and_insert(self, new_node) #start with the root
 
         
     # Return True if the tree contains the value
@@ -54,31 +70,6 @@ class BSTNode:
             else:
                 return self.right.contains(target)
             
-
-
-        # def search_for_value(node, target_value):
-            
-        #     if node.value == target_value:
-        #         print("You got here")
-        #         return True
-                
-        #     elif target_value < node.value:
-        #         if node.left == None:
-        #             return False
-        #         else:
-        #             search_for_value(node.left, target_value)
-        #     elif target_value > node.value:
-        #         if node.right == None:
-        #             return False
-        #         else:
-        #             search_for_value(node.right, target_value)
-
-        # print(f"{search_for_value(self, target)}")
-        # return search_for_value(self, target)
-        
-        
-
-        
         
 
     # Return the maximum value found in the tree
