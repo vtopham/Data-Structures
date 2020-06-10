@@ -41,26 +41,51 @@ class BSTNode:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        
-        def search_for_value(node, target_value):
-            if node.value == target_value:
-                return True
-            if target_value < node.value:
-                if node.left == None:
-                    return False
-                else:
-                    search_for_value(node.left, target_value)
-            if target_value > node.value:
-                if node.right == None:
-                    return False
-                else:
-                    search_for_value(node.right, target_value)
+        if target == self.value:
+            return True
+        elif target < self.value:
+            if self.left == None:
+                return False
+            else: 
+                return self.left.contains(target)
+        else:
+            if self.right == None:
+                return False
+            else:
+                return self.right.contains(target)
+            
 
-        search_for_value(self, target)
+
+        # def search_for_value(node, target_value):
+            
+        #     if node.value == target_value:
+        #         print("You got here")
+        #         return True
+                
+        #     elif target_value < node.value:
+        #         if node.left == None:
+        #             return False
+        #         else:
+        #             search_for_value(node.left, target_value)
+        #     elif target_value > node.value:
+        #         if node.right == None:
+        #             return False
+        #         else:
+        #             search_for_value(node.right, target_value)
+
+        # print(f"{search_for_value(self, target)}")
+        # return search_for_value(self, target)
+        
+        
+
+        
+        
 
     # Return the maximum value found in the tree
     def get_max(self):
         pass
+        
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
