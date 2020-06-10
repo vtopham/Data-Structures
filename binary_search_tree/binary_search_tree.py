@@ -17,8 +17,27 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        new_node = BSTNode(value)
+        
+        def find_and_insert(eval_node, new_node):
+            if value < eval_node.value:
+                #Try to put it on the left
+                if eval_node.left == None:
+                    eval_node.left = new_node
+                else:
+                #If there's already a node there, start over evaluating that node
+                    find_and_insert(eval_node.left, new_node)
+            else:
+                #Try to put it on the right
+                if eval_node.right == None:
+                    eval_node.right = new_node
+                else:
+                #If there's already a node there, start over evaluating that node
+                    find_and_insert(eval_node.right, new_node)
 
+        find_and_insert(self, new_node) #start with the root
+
+        
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
