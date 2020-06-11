@@ -6,6 +6,7 @@ from doubly_linked_list import DoublyLinkedList
 class DoublyLinkedListTests(unittest.TestCase):
     def setUp(self):
         self.node = ListNode(1)
+        
         self.dll = DoublyLinkedList(self.node)
 
     def test_list_remove_from_tail(self):
@@ -79,11 +80,14 @@ class DoublyLinkedListTests(unittest.TestCase):
 
     def test_list_add_to_head(self):
         self.assertEqual(self.dll.head.value, 1)
+        
 
         self.dll.add_to_head(10)
         self.assertEqual(self.dll.head.value, 10)
         self.assertEqual(self.dll.head.next.value, 1)
         self.assertEqual(len(self.dll), 2)
+        print(f"3Head is {self.dll.head.value}")
+        print(f"3Head next is {self.dll.head.next}")
 
     def test_node_insert_after(self):
         self.node.insert_after(2)
@@ -93,13 +97,19 @@ class DoublyLinkedListTests(unittest.TestCase):
         self.dll.add_to_head(40)
         self.assertEqual(self.dll.tail.value, 1)
         self.assertEqual(self.dll.head.value, 40)
-
+        print(f"1Head is {self.dll.head.value}")
+        print(f"1Head next is {self.dll.head.next.value}")
         self.dll.move_to_end(self.dll.head)
+        print(f"2Head is {self.dll.head.value}")
+        print(f"2Head next is {self.dll.head.next}")
+
         self.assertEqual(self.dll.tail.value, 40)
         self.assertEqual(self.dll.tail.prev.value, 1)
         self.assertEqual(len(self.dll), 2)
 
         self.dll.add_to_tail(4)
+        print(f"Head is {self.dll.head.value}")
+        print(f"Head next is {self.dll.head.next}")
         self.dll.move_to_end(self.dll.head.next)
         self.assertEqual(self.dll.tail.value, 40)
         self.assertEqual(self.dll.tail.prev.value, 4)
