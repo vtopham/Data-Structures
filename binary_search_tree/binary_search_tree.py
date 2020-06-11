@@ -128,20 +128,28 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        stack = [node]
+        #oops, this is iterative
+        # stack = [node]
 
-        while len(stack) > 0:
-            #because we'll be adding to the top of the stack i figured i'd grab this value this way
-            eval_node = stack[0]
-            #print that baby
-            print(eval_node.value)
-            #get it off the stack
-            stack.pop(0)
-            #add the children to the stack
-            if eval_node.right:
-                stack.insert(0,eval_node.right)
-            if eval_node.left:
-                stack.insert(0,eval_node.left)
+        # while len(stack) > 0:
+        #     #because we'll be adding to the top of the stack i figured i'd grab this value this way
+        #     eval_node = stack[0]
+        #     #print that baby
+        #     print(eval_node.value)
+        #     #get it off the stack
+        #     stack.pop(0)
+        #     #add the children to the stack
+        #     if eval_node.right:
+        #         stack.insert(0,eval_node.right)
+        #     if eval_node.left:
+        #         stack.insert(0,eval_node.left)
+
+        #This one's the recursive solution
+        print(node.value)
+        if node.left:
+            self.pre_order_dft(node.left)
+        if node.right:
+            self.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
