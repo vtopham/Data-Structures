@@ -91,9 +91,10 @@ class BSTNode:
     # in an iterative breadth first traversal
     def bft_print(self, node):
         queue = [node]
+
         while len(queue) > 0:
             #print the value
-            print(queue[0])
+            print(queue[0].value)
             #add its children to the end of the queue
             if queue[0].left:
                 queue.append(queue[0].left)
