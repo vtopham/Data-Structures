@@ -83,8 +83,6 @@ class BSTNode:
         if node.right:
             #before you go to the right print yourself, since you're smaller
             node.in_order_print(node.right)
-            
-        
 
 
     # Print the value of every node, starting with the given node,

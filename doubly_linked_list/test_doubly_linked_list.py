@@ -87,7 +87,7 @@ class DoublyLinkedListTests(unittest.TestCase):
         self.assertEqual(self.dll.head.next.value, 1)
         self.assertEqual(len(self.dll), 2)
         print(f"3Head is {self.dll.head.value}")
-        print(f"3Head next is {self.dll.head.next}")
+        print(f"3Head next is {self.dll.head.next.value}")
 
     def test_node_insert_after(self):
         self.node.insert_after(2)
